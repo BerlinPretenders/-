@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ILoveDrinkingMonsterEnergy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400&family=Kanit:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            text-align: center;
+            background-color: #f0e5ff;
+            color: hwb(330 69% 3%);
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: 'Kumbh Sans', sans-serif;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #ff66b3;
+            transition: opacity 0.8s ease-in-out;
+            text-shadow: 3px 3px 0px #fff, -3px -3px 0px #fff;
+            font-family: 'Kanit', sans-serif;
+        }
+        .hide-title {
+            opacity: 0 !important;
+        }
+        .btn {
+            background-color: #ffb3d9;
+            color: white;
+            font-size: 26px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            box-shadow: 4px 4px 0px #fff, -4px -4px 0px #fff;
+            font-family: 'Kumbh Sans', sans-serif;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 6px 6px 0px #fff, -6px -6px 0px #fff;
+        }
+        .btn:active {
+            transform: scale(1.1);
+        }
+        #message {
+            font-size: 24px;
+            color: #ff66b3;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+            text-shadow: 3px 3px 0px #fff, -3px -3px 0px #fff;
+            font-family: 'Kanit', sans-serif;
+            position: relative;
+            margin-top: 50px;
+        }
+        .show-message {
+            opacity: 1 !important;
+            transform: scale(1.2);
+        }
+        .heart {
+            position: absolute;
+            color: #ff66b3;
+            font-size: 24px;
+            animation: floatUp 2s ease-in-out forwards;
+        }
+        @keyframes floatUp {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-100px); }
+        }
+        #image-container {
+            margin-top: 20px;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+        }
+        .show-image {
+            opacity: 1 !important;
+            transform: scale(1);
+        }
+        img {
+            width: 500px;
+            height: auto;
+            border: 5px solid #ffd6e6;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="title">กดปุ่มข้างล่างสิ... 😈</h1>
+    <button class="btn" id="magicButton" onclick="showMessage()">กดหน่อยนะ แต่อย่ากดเยอะไม่ได้ทำไว้</button>
+    <p id="message">เดินคนเดียวยังเดินเซ แล้วสะเกเบ้เด้จะไปเหลืออะไร</p>
+    <div id="image-container">
+        <img id="user-image" src="https://i.pinimg.com/736x/98/6c/46/986c46425d84ef6ec1e74c71e960d8c8.jpg" alt="User Image">
+    </div>
+
+    <!-- เพลงที่จะเล่น -->
+    <audio id="audioPlayer" autoplay>
+        <source src="https://drive.google.com/uc?export=download&id=19QG0uGhxh0SICXxacLkMTb04MfsSbk-x" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        function showMessage() {
+            const title = document.getElementById("title");
+            const message = document.getElementById("message");
+            const imageContainer = document.getElementById("image-container");
+            const bgMusic = document.getElementById("bgMusic");
+
+            // ซ่อนหัวข้อ
+            title.classList.add("hide-title");
+
+            // แสดงข้อความ
+            setTimeout(() => {
+                message.classList.add("show-message");
+            }, 500);
+
+            // แสดงภาพ
+            setTimeout(() => {
+                imageContainer.classList.add("show-image");
+            }, 800);
+
+            // สร้างหัวใจที่ลอย
+            for (let i = 0; i < 5; i++) {
+                createHeart();
+            }
+
+            // เริ่มเล่นเพลง
+            bgMusic.play();
+
+            // เมื่อเพลงจบให้ปิดแท็บ
+            bgMusic.addEventListener('ended', function() {
+                window.close();
+            });
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.innerHTML = "❤️";
+            heart.classList.add("heart");
+
+            // กำหนดตำแหน่งสุ่ม
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.bottom = "0px";
+
+            document.body.appendChild(heart);
+
+            // ลบหัวใจหลังจากแสดงไปแล้ว
+            setTimeout(() => {
+                heart.remove();
+            }, 2000);
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
